@@ -7,4 +7,25 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\..\tApp\tCore\tlib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="tBase">
+      <HintPath>..\..\tApp\tCore\bin\Debug\net6.0-windows\tBase.dll</HintPath>
+    </Reference>
+    <Reference Include="tCore">
+      <HintPath>..\..\tApp\tCore\bin\Debug\net6.0-windows\tCore.dll</HintPath>
+    </Reference>
+    <Reference Include="tMvvm">
+      <HintPath>..\..\tApp\tCore\bin\Debug\net6.0-windows\tMvvm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

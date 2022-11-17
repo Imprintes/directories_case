@@ -3,10 +3,122 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:directories_case"
+        xmlns:local="clr-namespace:directories_case" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:c="clr-namespace:tMvvm;assembly=tMvvm"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:DirectoryConf/>
+    </Window.DataContext>
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Column="0" 
+            Grid.Row="1"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox 
+                ItemsSource="{Binding SrcComDirctorys,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SrcComSelectedIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                IsEditable="True"
+                Grid.Column="0"/>
+            <Button 
+                x:Name="AddSrcDirctory"
+                Content="Add" 
+                HorizontalAlignment="Right" 
+                Width="30"
+                Margin="5"
+                Background="Transparent"
+                 Grid.Column="1">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <c:CommandEvent Command="{Binding AddSrcDir}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </Grid>
+        <GroupBox
+            Grid.Column="0" 
+            Grid.Row="1"
+            Header="Source Dirctory" Margin="0,29,0,0" Grid.RowSpan="2">
+            <ListBox
+                ItemsSource="{Binding SrcListFiles,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SrcListSelectedIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                />
+        </GroupBox>
+        <Grid
+            Grid.Column="1"
+            Grid.Row="1" Grid.ColumnSpan="2" Margin="0,29,0,0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button
+                Grid.Row="1"
+                x:Name="SrcCopyToDst"
+                Content=">"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MinWidth="20"
+                Background="Transparent"
+                Margin="5"
+                />
+            <Button
+                Grid.Row="3"
+                x:Name="RemoveDstSelect"
+                Content="-"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                MinWidth="20"
+                Background="Transparent"
+                Margin="5"
+                />
+        </Grid>
+        <Grid
+            Grid.Column="3" 
+            Grid.Row="1"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox 
+                ItemsSource="{Binding DstComDirctorys,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding DstComSelectedIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                IsEditable="True"
+                 Grid.Column="0"/>
+            <Button 
+                x:Name="AddDstDirctory"
+                Content="Add" 
+                HorizontalAlignment="Right" 
+                Width="30"
+                Margin="5"
+                Background="Transparent"
+                 Grid.Column="1"/>
+        </Grid>
+        <GroupBox
+            Grid.Column="3" 
+            Grid.Row="1"
+            Header="Target Dirctory" Margin="0,29,0,0" Grid.RowSpan="2">
+            <ListBox
+                ItemsSource="{Binding DstListFiles,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding DstListSelectedIndex,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                />
+        </GroupBox>
     </Grid>
 </Window>
